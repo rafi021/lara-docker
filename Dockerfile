@@ -34,9 +34,9 @@ RUN pecl install redis && docker-php-ext-enable redis
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install Node.js and NPM
-RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs
+# # Install Node.js and NPM
+# RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - && \
+#     apt-get install -y nodejs
 
 # Copy existing application directory permissions
 COPY --chown=www-data:www-data . /var/www/html
