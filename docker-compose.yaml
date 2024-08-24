@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  # PHP service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    restart: always
+    volumes:
+      - .:/var/www/html
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - laravel
+
+  # Nginx service
+  webserver:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - laravel
+    depends_on:
+      - app
+
+  # MySQL service
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravel
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - laravel
+
+  # Redis service
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    networks:
+      - laravel
+
+  # phpMyAdmin service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80"
+    networks:
+      - laravel
+    depends_on:
+      - mysql
+
+  # MeiliSearch service
+  meilisearch:
+    image: getmeili/meilisearch:v1.2
+    container_name: meilisearch
+    restart: always
+    ports:
+      - "7700:7700"
+    networks:
+      - laravel
+
+networks:
+  laravel:
+
+volumes:
+  mysql_data:
