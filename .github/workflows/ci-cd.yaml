@@ -31,11 +31,11 @@ jobs:
 
       # Build the Docker image
       - name: Build Docker image
-        run: docker-compose -f docker-compose.yml build
+        run: docker compose -f docker-compose.yaml build
 
       # Run tests
       - name: Run tests
-        run: docker-compose run --rm app php artisan test
+        run: docker compose run --rm app php artisan test
 
   deploy:
     runs-on: ubuntu-latest
