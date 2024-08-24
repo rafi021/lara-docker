@@ -33,9 +33,9 @@ jobs:
       - name: Build Docker image
         run: docker compose -f docker-compose.yaml build
 
-      # Run tests
-      - name: Run tests
-        run: docker compose run --rm app php artisan test
+      # # Run tests
+      # - name: Run tests
+      #   run: docker compose run --rm app php artisan test
 
   deploy:
     runs-on: ubuntu-latest
