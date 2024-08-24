@@ -6,6 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: rafi021/laravel_app:latest
     container_name: laravel_app
     restart: always
     volumes:
