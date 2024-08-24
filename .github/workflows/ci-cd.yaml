@@ -58,7 +58,7 @@ jobs:
       # Push the Docker image to DockerHub
       - name: Push Docker image
         run: |
-          docker-compose -f docker-compose.yml build
+          docker compose -f docker-compose.yaml build
           docker tag laravel_app:latest rafi021/laravel_app:latest
           docker push rafi021/laravel_app:latest
 
