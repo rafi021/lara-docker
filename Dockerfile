@@ -47,7 +47,7 @@ USER www-data
 # Copy existing application directory permissions
 RUN chown -R www-data:www-data /var/www/html
 
-RUN npm install
+# RUN npm install
 
 RUN chmod -R 777 storage/ bootstrap/cache/
 
