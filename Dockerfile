@@ -45,13 +45,13 @@ COPY --chown=www-data:www-data . /var/www/html
 # Change current user to www
 USER www-data
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
-
 # Copy existing application directory permissions
 RUN chown -R www-data:www-data /var/www/html
 
 # RUN npm install
+
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader
 
 RUN chmod 777 storage/ bootstrap/cache/
 
