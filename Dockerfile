@@ -49,7 +49,7 @@ RUN chown -R www-data:www-data /var/www/html
 
 # RUN npm install
 
-RUN chmod -R 777 storage/ bootstrap/cache/
+RUN chmod 777 storage/ bootstrap/cache/
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
