@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # PHP service
@@ -10,7 +10,7 @@ services:
     container_name: laravel_app
     restart: always
     volumes:
-      - .:/var/www/html/lara-docker
+      - .:/var/www/html
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - laravel
