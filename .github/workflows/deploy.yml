@@ -17,7 +17,7 @@ jobs:
           host: "134.209.145.61"
           username: "root"
           password: "5|Z<6^l%1£:16&^q_!Gzn-47"
-          run: |
+          script: |
             cd  /var/www/html/hishabee/lara-docker/ &&
             git pull origin main &&
             docker-compose down &&
